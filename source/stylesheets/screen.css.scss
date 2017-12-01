@@ -206,7 +206,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: #4a4a4a;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -353,10 +353,8 @@ html, body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    background-color: #ffffff;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -422,7 +420,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      
     }
 
     tr:nth-child(odd)>td {

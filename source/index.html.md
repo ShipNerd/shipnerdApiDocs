@@ -2,14 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.shipnerd.com/account'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -19,221 +15,409 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+**Welcome to ShipNerd's API**
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+ShipNerd makes shipping quick, easy, and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Using our API you can get shipping quotes and create labels. It's quick & easy, follow the instructions and start shipping today.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
 ```javascript
-const kittn = require('kittn');
+const request = require('request')
 
-let api = kittn.authorize('meowmeowmeow');
+request.post({
+    url: [API_URL],
+    headers: {
+      'Authorization': 'JWT [API_TOKEN]'
+    },
+    json: true,
+    body: ...
+}, function(err, response, body){}) 
 ```
+> Make sure to replace `[API_TOKEN]` with your API token.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+The API supports JWT tokens for authentication.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+After you signup for a free acount, go to "Account Settings" page and enable the API to get your token.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+![Shipnerd api section](images/api-section.png)
 
-`Authorization: meowmeowmeow`
+ShipNerd expects the API token to be included in all API requests as the Authorization header:
+
+`Authorization: JWT [API_TOKEN]`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>[API_TOKEN]</code> with your personal API token.
 </aside>
 
-# Kittens
+# Interacting with the API
 
-## Get All Kittens
+## Get Rates
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+> Request:
 
 ```javascript
-const kittn = require('kittn');
+const request = require('request');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+var shipments = [];
+var shipment = {
+  from:{
+    name: 'John Doe',
+    company: 'Acme Labs',
+    country: 'US',
+    address1: '111 8th Ave',
+    address2: '',
+    zipCode: '10011',
+    city: 'New York',
+    state: 'NY',
+    phone: '1234567890',
+    email: 'john@acmelabs.com'  
+  },
+  to:{
+    name: 'Ned Flanders',
+    company: 'Simpsons Labs',
+    country: 'US',
+    address1: '300 Post St',
+    address2: 'Suite 152',
+    zipCode: '94108',
+    city: 'San Francisco',
+    state: 'CA',
+    phone: '1234567890',
+    email: 'ned@simpsons.com' 
+  },
+  referenceNumber: 'Nerds Rule',
+  packagingType: 'your_packaging',
+  packages: [{
+    weight: 10,
+    weightUnits: 'lbs'
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+    weight: 12,
+    weightUnits: 'lbs',
+    width: 12,
+    length: 12,
+    height: 12,
+    dimensionUnits: 'in'
+  }]
+}
+shipments.push(shipment);
+
+request.post({
+    url: "https://shipnerd.com/api/1.0/get_rates",
+    headers: {
+      'Authorization': 'JWT [API_TOKEN]'
+    },
+    body: {
+      shipments: shipments
+    },
+    json: true
+}, function(err, response, body){
+    if (err){
+        .....
+    }
+    else{
+      .....
+    }
+}) 
 ```
 
-This endpoint retrieves all kittens.
+> Response:
+
+```json
+{
+  "status": true,
+  "data": [
+    {
+      "rates": [
+        {
+          "service": "hyperspeed",
+          "deliveryTime": "Mon December 04 by 10:30 am",
+          "rate": {
+            "transportation": "151.31",
+            "accessorials": [
+              {
+                "name": "DELIVERY AREA",
+                "rate": 0
+              }
+            ],
+            "subtotal": 151.31,
+            "taxes": {},
+            "total": 151.31
+          },
+          "currency": "USD",
+          "billingWeight": 22
+        },
+        {
+          "service": "fastest",
+          "deliveryTime": "Mon December 04 by 03:00 pm",
+          "rate": {
+            "transportation": "139.55",
+            "accessorials": [
+              {
+                "name": "DELIVERY AREA",
+                "rate": 0
+              }
+            ],
+            "subtotal": 139.55,
+            "taxes": {},
+            "total": 139.55
+          },
+          "currency": "USD",
+          "billingWeight": 22
+        },
+        {
+          "service": "faster",
+          "deliveryTime": "Tue December 05 by 11:00 pm",
+          "rate": {
+            "transportation": "87.73",
+            "accessorials": [
+              {
+                "name": "DELIVERY AREA",
+                "rate": 0
+              }
+            ],
+            "subtotal": 87.73,
+            "taxes": {},
+            "total": 87.73
+          },
+          "currency": "USD",
+          "billingWeight": 22
+        },
+        {
+          "service": "fast",
+          "deliveryTime": "Fri December 08 by 11:00 pm",
+          "rate": {
+            "transportation": "28.64",
+            "accessorials": [
+              {
+                "name": "DELIVERY AREA",
+                "rate": 0
+              }
+            ],
+            "subtotal": 28.64,
+            "taxes": {},
+            "total": 28.64
+          },
+          "currency": "USD",
+          "billingWeight": 22
+        }
+      ]
+    }
+  ]
+}
+
+```
+Returns rates for the requested shipments
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://www.shipnerd.com/api/1.0/get_rates`
 
-### Query Parameters
+### Body Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+shipments | N | Array | List of shipments. See [Shipment] (#shipment)
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+### Response Parameters
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+status | N | Boolean | Status of operation
+data | N | Array | List of rates. See [Rate Results] (#rate-results)
+
+<aside class="notice">
+Max number of shipments allowed per request is 15 
 </aside>
 
-## Get a Specific Kitten
+## Create Labels
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+> Request:
 
 ```javascript
-const kittn = require('kittn');
+const request = require('request');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+var shipments = [];
+var shipment = {
+  from:{
+    name: 'John Doe',
+    company: 'Acme Labs',
+    country: 'US',
+    address1: '111 8th Ave',
+    address2: '',
+    zipCode: '10011',
+    city: 'New York',
+    state: 'NY',
+    phone: '1234567890',
+    email: 'john@acmelabs.com'  
+  },
+  to:{
+    name: 'Ned Flanders',
+    company: 'Simpsons Labs',
+    country: 'US',
+    address1: '300 Post St',
+    address2: 'Suite 152',
+    zipCode: '94108',
+    city: 'San Francisco',
+    state: 'CA',
+    phone: '1234567890',
+    email: 'ned@simpsons.com' 
+  },
+  referenceNumber: 'Nerds Rule',
+  packagingType: 'your_packaging',
+  packages: [{
+    weight: 10,
+    weightUnits: 'lbs',
+    width: 12,
+    length: 12,
+    height: 12,
+    dimensionUnits: 'in'
+  }],
+  service: 'hyperspeed'
+}
+shipments.push(shipment);
+
+shipments.push({
+  orderId: '1512154689639',
+  service: 'faster'
+})
+
+request.post({
+    url: "https://shipnerd.com/api/1.0/create_labels",
+    headers: {
+      'Authorization': 'JWT [API_TOKEN]'
+    },
+    body: {
+      shipments: shipments
+    },
+    json: true
+}, function(err, response, body){
+    if (err){
+        .....
+    }
+    else{
+      .....
+    }
+}) 
 ```
 
-> The above command returns JSON structured like this:
+> Response
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "status": true,
+  "data": [
+    {
+      "orderId": "1512154689639",
+      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9"
+    },
+    {
+      "orderId": "1512155343427",
+      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9"
+    }
+  ]
 }
+
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Creates labels for the requested shipments
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://www.shipnerd.com/api/1.0/create_labels`
 
-### URL Parameters
+### Body Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+shipments | N | Array | List of Shipments. See [Shipment] (#shipment)
 
-## Delete a Specific Kitten
+### Response Parameters
 
-```ruby
-require 'kittn'
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+status | N | Boolean | Status of operation
+data | N | Array | List of labels. See [Label Results] (#label-result)
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+<aside class="notice">
+Max number of shipments allowed per request is 15 
+</aside>
 
-```python
-import kittn
+# Entities
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Shipment
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+orderId | Y | String | Will be ignored in rates call. If used in create_labels call - the order will referenced and all other fields will be ignored. Unless used with 'isUpdate' field
+isUpdate | Y | Boolean | Only used together with OrderId. If set to true, all other fields must be specified (from, to, packagingType ... ) so that the order will be updated with new values
+from | N | Object | Sender's information. See [Address] (#address)
+to | N | Object | Receiver's information. See [Address] (#address)
+packagingType | N | String | 'your_packaging' or 'envelope'
+packages | Cond | Array | Array of packages. Should be present only if 'your_packaging' is used as packagingType. See [Package] (#package)
+isSignature | Y | Boolean | Is signature required
+isResidential | Y | Boolean | Is residential address
+referenceNumber | Y | String | Must be up to 30 chars
+service | N | String | Available values are 'hyperspeed', 'fastest', 'faster' and 'fast'. Not all services are availale for every shipment. Will be ignored in rates call.
+customsInfo | Cond | Object | Should be present for international shipments. See [Customs] (#customs)
 
-```javascript
-const kittn = require('kittn');
+## Address
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+name | N | String | Must be up to 35 chars
+company | N | String | Must be up to 35 chars
+address1 | N | String | Must be up to 35 chars
+address2 | N | String | Must be up to 35 chars
+city | N | String | Must be up to 30 chars
+state | Y | String | 2 letters state code. Mandatory only for countries with state.
+zipCode | N | String | A valid zip code for the address
+country | N | String | 2 letters country code. We currently only support CA->CA, CA->US, CA->IL, CA->GB, CA->FR, CA->AU, CA->CN, CA->DE, CA->GR, CA->IT, CA->JP, CA->ES, CA->CH, CA->PH, CA->PK, CA->SE, CA->IN, CA->MX, CA->BR, US->US, US->CA
+phone | N | String | Must be between 10-15 chars including 10 digits
+email | N | String | A valid email address
 
-> The above command returns JSON structured like this:
+## Package
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+weight | N | Number | For 'lbs' min value is 2 and max value is 150. For 'kgs' min value is 1 and max value is 68
+weightUnits | N | String | Must be 'lbs' or 'kgs' in lowercase
+length | Y | Whole Number | Can only be used together with 'width' & 'height'. For 'in' must be under than 108. For 'cm' must be under 270. 
+width | Y | Whole Number | Can only be used together with 'length' & 'height'
+height | Y | Whole Number | Can only be used together with 'width' & 'length'
+dimensionUnits| Cond | String | Must be used when dimensions are specified. 'lbs' goes with 'in' and 'kgs' goes with 'cm'
+value | Y | Number | Declared value of package
 
-This endpoint deletes a specific kitten.
+## Customs
 
-### HTTP Request
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+documents | Y | Object | Describes a documents shipment. See [Documents] (#documents)
+commodities | Y | Object | Describes a non-documents shipment. See [Commodities] (#commodities)
 
-`DELETE http://example.com/kittens/<ID>`
+## Documents
 
-### URL Parameters
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+type | N | String | Available values are 'Documents With No Commercial Value', 'Letters and Cards', 'Interoffice Memos' or 'Business Correspondence'
+value | N | Number | Value of documents. If 'Documents With No Commercial Value' was set, value must be 0
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## Commodities
 
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+reasonForExport | N | String | Available values are 'commercial', 'gift', 'sample', 'return', 'repair', 'personal_effects' or 'personal_use'
+commodities | N | Array | List of commodities. See [Commodity] (#commodity)
+
+## Commodity
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+description | N | String | Must be up to 35 chars and include at least 2 words
+manufactureCountry | N | String | 2 letters country code of manufacture
+quantity | N | Whole Number | Number of pieces
+quantityUnits | N | Whole Number | Available values are - 'EA' = each, 'PCS' = pieces & 'PRS' = pairs
+weight | N | Number | Commodity weight
+weightUnits| N | String | Must be 'lbs' or 'kgs' in lower case 
+value | N | Number | Value of commodity
