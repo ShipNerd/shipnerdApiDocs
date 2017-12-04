@@ -131,81 +131,86 @@ request.post({
     {
       "rates": [
         {
-          "service": "hyperspeed",
-          "deliveryTime": "Mon December 04 by 10:30 am",
+          "shipnerdService": "hyperspeed",
+          "carrierService": "UPS Next Day Air",
+          "deliveryTime": "Tue December 05 by 10:30 am",
           "rate": {
-            "transportation": "151.31",
+            "transportation": "80.16",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
                 "rate": 0
               }
             ],
-            "subtotal": 151.31,
+            "subtotal": 80.16,
             "taxes": {},
-            "total": 151.31
+            "total": 80.16
           },
           "currency": "USD",
-          "billingWeight": 22
+          "billingWeight": 11
         },
         {
-          "service": "fastest",
-          "deliveryTime": "Mon December 04 by 03:00 pm",
+          "shipnerdService": "fastest",
+          "carrierService": "UPS Next Day Air Saver",
+          "deliveryTime": "Tue December 05 by 03:00 pm",
           "rate": {
-            "transportation": "139.55",
+            "transportation": "69.87",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
                 "rate": 0
               }
             ],
-            "subtotal": 139.55,
+            "subtotal": 69.87,
             "taxes": {},
-            "total": 139.55
+            "total": 69.87
           },
           "currency": "USD",
-          "billingWeight": 22
+          "billingWeight": 11
         },
         {
-          "service": "faster",
-          "deliveryTime": "Tue December 05 by 11:00 pm",
+          "shipnerdService": "faster",
+          "carrierService": "UPS 2nd Day Air",
+          "deliveryTime": "Wed December 06 by 11:00 pm",
           "rate": {
-            "transportation": "87.73",
+            "transportation": "44.15",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
                 "rate": 0
               }
             ],
-            "subtotal": 87.73,
+            "subtotal": 44.15,
             "taxes": {},
-            "total": 87.73
+            "total": 44.15
           },
           "currency": "USD",
-          "billingWeight": 22
+          "billingWeight": 11
         },
         {
-          "service": "fast",
-          "deliveryTime": "Fri December 08 by 11:00 pm",
+          "shipnerdService": "fast",
+          "carrierService": "UPS Ground",
+          "deliveryTime": "Mon December 11 by 11:00 pm",
           "rate": {
-            "transportation": "28.64",
+            "transportation": "13.99",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
                 "rate": 0
               }
             ],
-            "subtotal": 28.64,
+            "subtotal": 13.99,
             "taxes": {},
-            "total": 28.64
+            "total": 13.99
           },
           "currency": "USD",
-          "billingWeight": 22
+          "billingWeight": 11
         }
       ]
     }
   ]
 }
+
 
 ```
 Returns rates for the requested shipments
@@ -225,10 +230,10 @@ shipments | N | Array | List of shipments. See [Shipment] (#shipment)
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 status | N | Boolean | Status of operation
-data | N | Array | List of rates. See [Rate Results] (#rate-results)
+data | N | Array | Rate results. See [Rate Results] (#rate-results)
 
 <aside class="notice">
-Max number of shipments allowed per request is 15 
+Max number of shipments allowed per request is 10 
 </aside>
 
 ## Create Labels
@@ -274,13 +279,13 @@ var shipment = {
     height: 12,
     dimensionUnits: 'in'
   }],
-  service: 'hyperspeed'
+  shipnerdService: 'hyperspeed'
 }
 shipments.push(shipment);
 
 shipments.push({
   orderId: '1512154689639',
-  service: 'faster'
+  shipnerdService: 'faster'
 })
 
 request.post({
@@ -331,17 +336,17 @@ Creates labels for the requested shipments
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-shipments | N | Array | List of Shipments. See [Shipment] (#shipment)
+shipments | N | Array | List of shipments. See [Shipment] (#shipment)
 
 ### Response Parameters
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 status | N | Boolean | Status of operation
-data | N | Array | List of labels. See [Label Results] (#label-result)
+data | N | Array | Label Results. See [Label Results] (#label-result)
 
 <aside class="notice">
-Max number of shipments allowed per request is 15 
+Max number of shipments allowed per request is 10 
 </aside>
 
 # Entities
@@ -421,3 +426,56 @@ quantityUnits | N | Whole Number | Available values are - 'EA' = each, 'PCS' = p
 weight | N | Number | Commodity weight
 weightUnits| N | String | Must be 'lbs' or 'kgs' in lower case 
 value | N | Number | Value of commodity
+
+## Rate Results
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+rates | N | Object | List of rates. See [Rate] (#rate) 
+
+## Rate
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+shipnerdService | N | String | ShipNerd service. Available values are hyperspeed, fastest, faster and fast
+carrierService | N | String | The carrier (UPS, Fedex or DHL) service
+breakdown | N | Object | The rate breakdown. See [Breakdown] (#breakdown)
+currency | N | String | The rate currency
+billingWeight | N | Number | Billing weight the rate is based on
+
+## Breakdown
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+transportation | N | Number | Transportation price
+accessorials | N | Array | List of accessorials. See [Accessorial] (#accessorial)
+taxes | N | Object | Taxes breakdown. See [Tax] (#tax)
+subtotal | N | Number | Subtotal price
+total | N | Number | Total price
+
+## Accessorial
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+name | N | String | Accessorial name
+price | N | Number | Accessorial price
+
+## Tax
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+name | N | String | Tax name
+price | N | Number | Tax price
+percentage | N | Number | Tax percentage
+
+## Label Results
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+orderId | N | String | The created order ID
+label | N | String | Url to the generated label
+
+# Limits
+
+There is a Maximum of 10 requests per 5 minutes per client. 
+Additional requests will result in an HTTP 429 (Too Many Requests) error.
