@@ -134,12 +134,12 @@ request.post({
           "shipnerdService": "hyperspeed",
           "carrierService": "UPS Next Day Air",
           "deliveryTime": "Tue December 05 by 10:30 am",
-          "rate": {
+          "breakdown": {
             "transportation": "80.16",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
-                "rate": 0
+                "price": 0
               }
             ],
             "subtotal": 80.16,
@@ -153,12 +153,12 @@ request.post({
           "shipnerdService": "fastest",
           "carrierService": "UPS Next Day Air Saver",
           "deliveryTime": "Tue December 05 by 03:00 pm",
-          "rate": {
+          "breakdown": {
             "transportation": "69.87",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
-                "rate": 0
+                "price": 0
               }
             ],
             "subtotal": 69.87,
@@ -172,12 +172,12 @@ request.post({
           "shipnerdService": "faster",
           "carrierService": "UPS 2nd Day Air",
           "deliveryTime": "Wed December 06 by 11:00 pm",
-          "rate": {
+          "breakdown": {
             "transportation": "44.15",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
-                "rate": 0
+                "price": 0
               }
             ],
             "subtotal": 44.15,
@@ -191,12 +191,12 @@ request.post({
           "shipnerdService": "fast",
           "carrierService": "UPS Ground",
           "deliveryTime": "Mon December 11 by 11:00 pm",
-          "rate": {
+          "breakdown": {
             "transportation": "13.99",
             "accessorials": [
               {
                 "name": "DELIVERY AREA",
-                "rate": 0
+                "price": 0
               }
             ],
             "subtotal": 13.99,
@@ -477,5 +477,5 @@ label | N | String | Url to the generated label
 
 # Limits
 
-There is a Maximum of 10 requests per 5 minutes per client. 
+Maximum of 10 requests per 5 minutes per client. 
 Additional requests will result in an HTTP 429 (Too Many Requests) error.
