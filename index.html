@@ -259,7 +259,28 @@
                   <li>
                     <a href="#commodity" class="toc-h2 toc-link" data-title="Commodity">Commodity</a>
                   </li>
+                  <li>
+                    <a href="#rate-results" class="toc-h2 toc-link" data-title="Rate Results">Rate Results</a>
+                  </li>
+                  <li>
+                    <a href="#rate" class="toc-h2 toc-link" data-title="Rate">Rate</a>
+                  </li>
+                  <li>
+                    <a href="#breakdown" class="toc-h2 toc-link" data-title="Breakdown">Breakdown</a>
+                  </li>
+                  <li>
+                    <a href="#accessorial" class="toc-h2 toc-link" data-title="Accessorial">Accessorial</a>
+                  </li>
+                  <li>
+                    <a href="#tax" class="toc-h2 toc-link" data-title="Tax">Tax</a>
+                  </li>
+                  <li>
+                    <a href="#label-results" class="toc-h2 toc-link" data-title="Label Results">Label Results</a>
+                  </li>
               </ul>
+          </li>
+          <li>
+            <a href="#limits" class="toc-h1 toc-link" data-title="Limits">Limits</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -382,81 +403,86 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hyperspeed"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon December 04 by 10:30 am"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hyperspeed"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05 by 10:30 am"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"151.31"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.16"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accessorials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY AREA"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.31</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">80.16</span><span class="p">,</span><span class="w">
             </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.31</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">80.16</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fastest"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon December 04 by 03:00 pm"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fastest"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air Saver"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05 by 03:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"139.55"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.87"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accessorials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY AREA"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">139.55</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.87</span><span class="p">,</span><span class="w">
             </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">139.55</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.87</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faster"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05 by 11:00 pm"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faster"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS 2nd Day Air"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed December 06 by 11:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87.73"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44.15"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accessorials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY AREA"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">87.73</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.15</span><span class="p">,</span><span class="w">
             </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">87.73</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.15</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fri December 08 by 11:00 pm"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Ground"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon December 11 by 11:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.64"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.99"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accessorials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY AREA"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.64</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.99</span><span class="p">,</span><span class="w">
             </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.64</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.99</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 
 </span></code></pre>
 <p>Returns rates for the requested shipments</p>
@@ -497,12 +523,12 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
 <td>data</td>
 <td>N</td>
 <td>Array</td>
-<td>List of rates. See <a href="#rate-results">Rate Results</a></td>
+<td>Rate results. See <a href="#rate-results">Rate Results</a></td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
-Max number of shipments allowed per request is 15 
+Max number of shipments allowed per request is 10 
 </aside>
 <h2 id='create-labels'>Create Labels</h2>
 <blockquote>
@@ -546,13 +572,13 @@ Max number of shipments allowed per request is 15
     <span class="na">height</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
     <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span>
   <span class="p">}],</span>
-  <span class="na">service</span><span class="p">:</span> <span class="s1">'hyperspeed'</span>
+  <span class="na">shipnerdService</span><span class="p">:</span> <span class="s1">'hyperspeed'</span>
 <span class="p">}</span>
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">shipment</span><span class="p">);</span>
 
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
   <span class="na">orderId</span><span class="p">:</span> <span class="s1">'1512154689639'</span><span class="p">,</span>
-  <span class="na">service</span><span class="p">:</span> <span class="s1">'faster'</span>
+  <span class="na">shipnerdService</span><span class="p">:</span> <span class="s1">'faster'</span>
 <span class="p">})</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
@@ -607,7 +633,7 @@ Max number of shipments allowed per request is 15
 <td>shipments</td>
 <td>N</td>
 <td>Array</td>
-<td>List of Shipments. See <a href="#shipment">Shipment</a></td>
+<td>List of shipments. See <a href="#shipment">Shipment</a></td>
 </tr>
 </tbody></table>
 <h3 id='response-parameters-2'>Response Parameters</h3>
@@ -629,12 +655,12 @@ Max number of shipments allowed per request is 15
 <td>data</td>
 <td>N</td>
 <td>Array</td>
-<td>List of labels. See <a href="#label-result">Label Results</a></td>
+<td>Label Results. See <a href="#label-result">Label Results</a></td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
-Max number of shipments allowed per request is 15 
+Max number of shipments allowed per request is 10 
 </aside>
 <h1 id='entities'>Entities</h1><h2 id='shipment'>Shipment</h2>
 <table><thead>
@@ -952,6 +978,177 @@ Max number of shipments allowed per request is 15
 <td>Value of commodity</td>
 </tr>
 </tbody></table>
+<h2 id='rate-results'>Rate Results</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rates</td>
+<td>N</td>
+<td>Object</td>
+<td>List of rates. See <a href="#rate">Rate</a></td>
+</tr>
+</tbody></table>
+<h2 id='rate'>Rate</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shipnerdService</td>
+<td>N</td>
+<td>String</td>
+<td>ShipNerd service. Available values are hyperspeed, fastest, faster and fast</td>
+</tr>
+<tr>
+<td>carrierService</td>
+<td>N</td>
+<td>String</td>
+<td>The carrier (UPS, Fedex or DHL) service</td>
+</tr>
+<tr>
+<td>breakdown</td>
+<td>N</td>
+<td>Object</td>
+<td>The rate breakdown. See <a href="#breakdown">Breakdown</a></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>N</td>
+<td>String</td>
+<td>The rate currency</td>
+</tr>
+<tr>
+<td>billingWeight</td>
+<td>N</td>
+<td>Number</td>
+<td>Billing weight the rate is based on</td>
+</tr>
+</tbody></table>
+<h2 id='breakdown'>Breakdown</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transportation</td>
+<td>N</td>
+<td>Number</td>
+<td>Transportation price</td>
+</tr>
+<tr>
+<td>accessorials</td>
+<td>N</td>
+<td>Array</td>
+<td>List of accessorials. See <a href="#accessorial">Accessorial</a></td>
+</tr>
+<tr>
+<td>taxes</td>
+<td>N</td>
+<td>Object</td>
+<td>Taxes breakdown. See <a href="#tax">Tax</a></td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>N</td>
+<td>Number</td>
+<td>Subtotal price</td>
+</tr>
+<tr>
+<td>total</td>
+<td>N</td>
+<td>Number</td>
+<td>Total price</td>
+</tr>
+</tbody></table>
+<h2 id='accessorial'>Accessorial</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>String</td>
+<td>Accessorial name</td>
+</tr>
+<tr>
+<td>price</td>
+<td>N</td>
+<td>Number</td>
+<td>Accessorial price</td>
+</tr>
+</tbody></table>
+<h2 id='tax'>Tax</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>String</td>
+<td>Tax name</td>
+</tr>
+<tr>
+<td>price</td>
+<td>N</td>
+<td>Number</td>
+<td>Tax price</td>
+</tr>
+<tr>
+<td>percentage</td>
+<td>N</td>
+<td>Number</td>
+<td>Tax percentage</td>
+</tr>
+</tbody></table>
+<h2 id='label-results'>Label Results</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>N</td>
+<td>String</td>
+<td>The created order ID</td>
+</tr>
+<tr>
+<td>label</td>
+<td>N</td>
+<td>String</td>
+<td>Url to the generated label</td>
+</tr>
+</tbody></table>
+<h1 id='limits'>Limits</h1>
+<p>There is a Maximum of 10 requests per 5 minutes per client. 
+Additional requests will result in an HTTP 429 (Too Many Requests) error.</p>
 <h1 id='errors'>Errors</h1>
 <table><thead>
 <tr>
@@ -970,6 +1167,10 @@ Max number of shipments allowed per request is 15
 <tr>
 <td>412</td>
 <td>Terms of service not accepted</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too many requests</td>
 </tr>
 </tbody></table>
 
