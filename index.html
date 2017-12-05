@@ -296,9 +296,9 @@
         <h1 id='introduction'>Introduction</h1>
 <p><strong>Welcome to ShipNerd&#39;s API</strong></p>
 
-<p>ShipNerd makes shipping quick, easy, and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.</p>
+<p>ShipNerd makes shipping quick, easy and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.</p>
 
-<p>Using our API you can get shipping quotes and create labels. It&#39;s quick &amp; easy, follow the instructions and start shipping today.</p>
+<p>Our shipping API enables you to instanly obtain shipping quotes and create labels. It&#39;s quick &amp; easy, follow the instructions and start shipping today.</p>
 <h1 id='authentication'>Authentication</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
@@ -316,7 +316,7 @@
 
 <p>The API supports JWT tokens for authentication.</p>
 
-<p>After you signup for a free acount, go to &quot;Account Settings&quot; page and enable the API to get your token.</p>
+<p>After you signup for a free acount, go to the &quot;Account Settings&quot; page and enable the API to get your token.</p>
 
 <p><img src="images/api-section.png" alt="Shipnerd api section" /></p>
 
@@ -675,13 +675,13 @@ Max number of shipments allowed per request is 10
 <td>orderId</td>
 <td>Y</td>
 <td>String</td>
-<td>Will be ignored in rates call. If used in create_labels call - the order will referenced and all other fields will be ignored. Unless used with &#39;isUpdate&#39; field</td>
+<td>Will be ignored in rates call. If used in create_labels call - the order will be referenced and all other fields will be ignored. Unless used with &#39;isUpdate&#39; field</td>
 </tr>
 <tr>
 <td>isUpdate</td>
 <td>Y</td>
 <td>Boolean</td>
-<td>Only used together with OrderId. If set to true, all other fields must be specified (from, to, packagingType ... ) so that the order will be updated with new values</td>
+<td>Only used together with orderId field. If set to true, all other fields must be specified (from, to, packagingType ... ). Order will be updated with new values</td>
 </tr>
 <tr>
 <td>from</td>
@@ -699,13 +699,13 @@ Max number of shipments allowed per request is 10
 <td>packagingType</td>
 <td>N</td>
 <td>String</td>
-<td>&#39;your_packaging&#39; or &#39;envelope&#39;</td>
+<td>Available values are &#39;your_packaging&#39; and &#39;envelope&#39;</td>
 </tr>
 <tr>
 <td>packages</td>
 <td>Cond</td>
 <td>Array</td>
-<td>Array of packages. Should be present only if &#39;your_packaging&#39; is used as packagingType. See <a href="#package">Package</a></td>
+<td>List of packages. Should be present only if &#39;your_packaging&#39; is used as packagingType. See <a href="#package">Package</a></td>
 </tr>
 <tr>
 <td>isSignature</td>
@@ -755,7 +755,7 @@ Max number of shipments allowed per request is 10
 </tr>
 <tr>
 <td>company</td>
-<td>N</td>
+<td>Y</td>
 <td>String</td>
 <td>Must be up to 35 chars</td>
 </tr>
@@ -767,7 +767,7 @@ Max number of shipments allowed per request is 10
 </tr>
 <tr>
 <td>address2</td>
-<td>N</td>
+<td>Y</td>
 <td>String</td>
 <td>Must be up to 35 chars</td>
 </tr>
@@ -779,9 +779,9 @@ Max number of shipments allowed per request is 10
 </tr>
 <tr>
 <td>state</td>
-<td>Y</td>
+<td>Cond</td>
 <td>String</td>
-<td>2 letters state code. Mandatory only for countries with state.</td>
+<td>2 letters state code. Mandatory only for countries with states.</td>
 </tr>
 <tr>
 <td>zipCode</td>
@@ -793,7 +793,7 @@ Max number of shipments allowed per request is 10
 <td>country</td>
 <td>N</td>
 <td>String</td>
-<td>2 letters country code. We currently only support CA-&gt;CA, CA-&gt;US, CA-&gt;IL, CA-&gt;GB, CA-&gt;FR, CA-&gt;AU, CA-&gt;CN, CA-&gt;DE, CA-&gt;GR, CA-&gt;IT, CA-&gt;JP, CA-&gt;ES, CA-&gt;CH, CA-&gt;PH, CA-&gt;PK, CA-&gt;SE, CA-&gt;IN, CA-&gt;MX, CA-&gt;BR, US-&gt;US, US-&gt;CA</td>
+<td>2 letters country code. We currently only support CA-&gt;CA, CA-&gt;US, CA-&gt;IL, CA-&gt;GB, CA-&gt;FR, CA-&gt;AU, CA-&gt;CN, CA-&gt;DE, CA-&gt;GR, CA-&gt;IT, CA-&gt;JP, CA-&gt;ES, CA-&gt;CH, CA-&gt;PH, CA-&gt;PK, CA-&gt;SE, CA-&gt;IN, CA-&gt;MX, CA-&gt;BR, US-&gt;US</td>
 </tr>
 <tr>
 <td>phone</td>
@@ -827,31 +827,31 @@ Max number of shipments allowed per request is 10
 <td>weightUnits</td>
 <td>N</td>
 <td>String</td>
-<td>Must be &#39;lbs&#39; or &#39;kgs&#39; in lowercase</td>
+<td>Available values are &#39;lbs&#39; and &#39;kgs&#39; (Please use lowercase)</td>
 </tr>
 <tr>
 <td>length</td>
 <td>Y</td>
 <td>Whole Number</td>
-<td>Can only be used together with &#39;width&#39; &amp; &#39;height&#39;. For &#39;in&#39; must be under than 108. For &#39;cm&#39; must be under 270.</td>
+<td>Must be used together with &#39;width&#39; &amp; &#39;height&#39; fields. For &#39;in&#39; max value is 108. For &#39;cm&#39; max value is 270.</td>
 </tr>
 <tr>
 <td>width</td>
 <td>Y</td>
 <td>Whole Number</td>
-<td>Can only be used together with &#39;length&#39; &amp; &#39;height&#39;</td>
+<td>Must be used together with &#39;length&#39; &amp; &#39;height&#39; fields</td>
 </tr>
 <tr>
 <td>height</td>
 <td>Y</td>
 <td>Whole Number</td>
-<td>Can only be used together with &#39;width&#39; &amp; &#39;length&#39;</td>
+<td>Must be used together with &#39;width&#39; &amp; &#39;length&#39; fields</td>
 </tr>
 <tr>
 <td>dimensionUnits</td>
 <td>Cond</td>
 <td>String</td>
-<td>Must be used when dimensions are specified. &#39;lbs&#39; goes with &#39;in&#39; and &#39;kgs&#39; goes with &#39;cm&#39;</td>
+<td>Must be used when dimensions are specified. &#39;lbs&#39; must be used with &#39;in&#39; and &#39;kgs&#39; must be used with &#39;cm&#39;</td>
 </tr>
 <tr>
 <td>value</td>
@@ -895,13 +895,13 @@ Max number of shipments allowed per request is 10
 <td>type</td>
 <td>N</td>
 <td>String</td>
-<td>Available values are &#39;Documents With No Commercial Value&#39;, &#39;Letters and Cards&#39;, &#39;Interoffice Memos&#39; or &#39;Business Correspondence&#39;</td>
+<td>Available values are &#39;Documents With No Commercial Value&#39;, &#39;Letters and Cards&#39;, &#39;Interoffice Memos&#39; and &#39;Business Correspondence&#39; (Please use same case)</td>
 </tr>
 <tr>
 <td>value</td>
 <td>N</td>
 <td>Number</td>
-<td>Value of documents. If &#39;Documents With No Commercial Value&#39; was set, value must be 0</td>
+<td>Value of documents. If &#39;Documents With No Commercial Value&#39; was set as type field - value must be 0</td>
 </tr>
 </tbody></table>
 <h2 id='commodities'>Commodities</h2>
@@ -917,7 +917,7 @@ Max number of shipments allowed per request is 10
 <td>reasonForExport</td>
 <td>N</td>
 <td>String</td>
-<td>Available values are &#39;commercial&#39;, &#39;gift&#39;, &#39;sample&#39;, &#39;return&#39;, &#39;repair&#39;, &#39;personal_effects&#39; or &#39;personal_use&#39;</td>
+<td>Available values are &#39;commercial&#39;, &#39;gift&#39;, &#39;sample&#39;, &#39;return&#39;, &#39;repair&#39;, &#39;personal_effects&#39; and &#39;personal_use&#39; (Please use lowercase)</td>
 </tr>
 <tr>
 <td>commodities</td>
@@ -945,7 +945,7 @@ Max number of shipments allowed per request is 10
 <td>manufactureCountry</td>
 <td>N</td>
 <td>String</td>
-<td>2 letters country code of manufacture</td>
+<td>2 letters country code</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -956,8 +956,8 @@ Max number of shipments allowed per request is 10
 <tr>
 <td>quantityUnits</td>
 <td>N</td>
-<td>Whole Number</td>
-<td>Available values are - &#39;EA&#39; = each, &#39;PCS&#39; = pieces &amp; &#39;PRS&#39; = pairs</td>
+<td>String</td>
+<td>Available values are - &#39;EA&#39; = each, &#39;PCS&#39; = pieces and &#39;PRS&#39; = pairs (Please use same case)</td>
 </tr>
 <tr>
 <td>weight</td>
@@ -969,7 +969,7 @@ Max number of shipments allowed per request is 10
 <td>weightUnits</td>
 <td>N</td>
 <td>String</td>
-<td>Must be &#39;lbs&#39; or &#39;kgs&#39; in lower case</td>
+<td>Available values are &#39;lbs&#39; and &#39;kgs&#39;. Must be the same unit as the packages&#39; weight</td>
 </tr>
 <tr>
 <td>value</td>
@@ -990,7 +990,7 @@ Max number of shipments allowed per request is 10
 <tr>
 <td>rates</td>
 <td>N</td>
-<td>Object</td>
+<td>Array</td>
 <td>List of rates. See <a href="#rate">Rate</a></td>
 </tr>
 </tbody></table>
@@ -1013,25 +1013,25 @@ Max number of shipments allowed per request is 10
 <td>carrierService</td>
 <td>N</td>
 <td>String</td>
-<td>The carrier (UPS, Fedex or DHL) service</td>
+<td>The carrier service</td>
 </tr>
 <tr>
 <td>breakdown</td>
 <td>N</td>
 <td>Object</td>
-<td>The rate breakdown. See <a href="#breakdown">Breakdown</a></td>
+<td>Rate breakdown. See <a href="#breakdown">Breakdown</a></td>
 </tr>
 <tr>
 <td>currency</td>
 <td>N</td>
 <td>String</td>
-<td>The rate currency</td>
+<td>Rate currency</td>
 </tr>
 <tr>
 <td>billingWeight</td>
 <td>N</td>
 <td>Number</td>
-<td>Billing weight the rate is based on</td>
+<td>The Billing weight rate is based on</td>
 </tr>
 </tbody></table>
 <h2 id='breakdown'>Breakdown</h2>
@@ -1147,7 +1147,7 @@ Max number of shipments allowed per request is 10
 </tr>
 </tbody></table>
 <h1 id='limits'>Limits</h1>
-<p>Maximum of 10 requests per 5 minutes per client. 
+<p>Max of 10 requests per 5 minutes per client. 
 Additional requests will result in an HTTP 429 (Too Many Requests) error.</p>
 <h1 id='errors'>Errors</h1>
 <table><thead>
