@@ -17,9 +17,9 @@ search: true
 
 **Welcome to ShipNerd's API**
 
-ShipNerd makes shipping quick, easy, and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.
+ShipNerd makes shipping quick, easy and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.
 
-Using our API you can get shipping quotes and create labels. It's quick & easy, follow the instructions and start shipping today.
+Our shipping API enables you to instanly obtain shipping quotes and create labels. It's quick & easy, follow the instructions and start shipping today.
 
 # Authentication
 
@@ -39,7 +39,7 @@ request.post({
 
 The API supports JWT tokens for authentication.
 
-After you signup for a free acount, go to "Account Settings" page and enable the API to get your token.
+After you signup for a free acount, go to the "Account Settings" page and enable the API to get your token.
 
 ![Shipnerd api section](images/api-section.png)
 
@@ -355,12 +355,12 @@ Max number of shipments allowed per request is 10
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-orderId | Y | String | Will be ignored in rates call. If used in create_labels call - the order will referenced and all other fields will be ignored. Unless used with 'isUpdate' field
-isUpdate | Y | Boolean | Only used together with OrderId. If set to true, all other fields must be specified (from, to, packagingType ... ) so that the order will be updated with new values
+orderId | Y | String | Will be ignored in rates call. If used in create_labels call - the order will be referenced and all other fields will be ignored. Unless used with 'isUpdate' field
+isUpdate | Y | Boolean | Only used together with orderId field. If set to true, all other fields must be specified (from, to, packagingType ... ). Order will be updated with new values
 from | N | Object | Sender's information. See [Address] (#address)
 to | N | Object | Receiver's information. See [Address] (#address)
-packagingType | N | String | 'your_packaging' or 'envelope'
-packages | Cond | Array | Array of packages. Should be present only if 'your_packaging' is used as packagingType. See [Package] (#package)
+packagingType | N | String | Available values are 'your_packaging' and 'envelope'
+packages | Cond | Array | List of packages. Should be present only if 'your_packaging' is used as packagingType. See [Package] (#package)
 isSignature | Y | Boolean | Is signature required
 isResidential | Y | Boolean | Is residential address
 referenceNumber | Y | String | Must be up to 30 chars
@@ -372,13 +372,13 @@ customsInfo | Cond | Object | Should be present for international shipments. See
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 name | N | String | Must be up to 35 chars
-company | N | String | Must be up to 35 chars
+company | Y | String | Must be up to 35 chars
 address1 | N | String | Must be up to 35 chars
-address2 | N | String | Must be up to 35 chars
+address2 | Y | String | Must be up to 35 chars
 city | N | String | Must be up to 30 chars
-state | Y | String | 2 letters state code. Mandatory only for countries with state.
+state | Cond | String | 2 letters state code. Mandatory only for countries with states.
 zipCode | N | String | A valid zip code for the address
-country | N | String | 2 letters country code. We currently only support CA->CA, CA->US, CA->IL, CA->GB, CA->FR, CA->AU, CA->CN, CA->DE, CA->GR, CA->IT, CA->JP, CA->ES, CA->CH, CA->PH, CA->PK, CA->SE, CA->IN, CA->MX, CA->BR, US->US, US->CA
+country | N | String | 2 letters country code. We currently only support CA->CA, CA->US, CA->IL, CA->GB, CA->FR, CA->AU, CA->CN, CA->DE, CA->GR, CA->IT, CA->JP, CA->ES, CA->CH, CA->PH, CA->PK, CA->SE, CA->IN, CA->MX, CA->BR, US->US
 phone | N | String | Must be between 10-15 chars including 10 digits
 email | N | String | A valid email address
 
@@ -387,11 +387,11 @@ email | N | String | A valid email address
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 weight | N | Number | For 'lbs' min value is 2 and max value is 150. For 'kgs' min value is 1 and max value is 68
-weightUnits | N | String | Must be 'lbs' or 'kgs' in lowercase
-length | Y | Whole Number | Can only be used together with 'width' & 'height'. For 'in' must be under than 108. For 'cm' must be under 270. 
-width | Y | Whole Number | Can only be used together with 'length' & 'height'
-height | Y | Whole Number | Can only be used together with 'width' & 'length'
-dimensionUnits| Cond | String | Must be used when dimensions are specified. 'lbs' goes with 'in' and 'kgs' goes with 'cm'
+weightUnits | N | String | Available values are 'lbs' and 'kgs' (Please use lowercase)
+length | Y | Whole Number | Must be used together with 'width' & 'height' fields. For 'in' max value is 108. For 'cm' max value is 270. 
+width | Y | Whole Number | Must be used together with 'length' & 'height' fields
+height | Y | Whole Number | Must be used together with 'width' & 'length' fields
+dimensionUnits| Cond | String | Must be used when dimensions are specified. 'lbs' must be used with 'in' and 'kgs' must be used with 'cm'
 value | Y | Number | Declared value of package
 
 ## Customs
@@ -405,14 +405,14 @@ commodities | Y | Object | Describes a non-documents shipment. See [Commodities]
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-type | N | String | Available values are 'Documents With No Commercial Value', 'Letters and Cards', 'Interoffice Memos' or 'Business Correspondence'
-value | N | Number | Value of documents. If 'Documents With No Commercial Value' was set, value must be 0
+type | N | String | Available values are 'Documents With No Commercial Value', 'Letters and Cards', 'Interoffice Memos' and 'Business Correspondence' (Please use same case)
+value | N | Number | Value of documents. If 'Documents With No Commercial Value' was set as type field - value must be 0
 
 ## Commodities
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-reasonForExport | N | String | Available values are 'commercial', 'gift', 'sample', 'return', 'repair', 'personal_effects' or 'personal_use'
+reasonForExport | N | String | Available values are 'commercial', 'gift', 'sample', 'return', 'repair', 'personal_effects' and 'personal_use' (Please use lowercase)
 commodities | N | Array | List of commodities. See [Commodity] (#commodity)
 
 ## Commodity
@@ -420,28 +420,28 @@ commodities | N | Array | List of commodities. See [Commodity] (#commodity)
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 description | N | String | Must be up to 35 chars and include at least 2 words
-manufactureCountry | N | String | 2 letters country code of manufacture
+manufactureCountry | N | String | 2 letters country code
 quantity | N | Whole Number | Number of pieces
-quantityUnits | N | Whole Number | Available values are - 'EA' = each, 'PCS' = pieces & 'PRS' = pairs
+quantityUnits | N | String | Available values are - 'EA' = each, 'PCS' = pieces and 'PRS' = pairs (Please use same case)
 weight | N | Number | Commodity weight
-weightUnits| N | String | Must be 'lbs' or 'kgs' in lower case 
+weightUnits| N | String | Available values are 'lbs' and 'kgs'. Must be the same unit as the packages' weight 
 value | N | Number | Value of commodity
 
 ## Rate Results
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-rates | N | Object | List of rates. See [Rate] (#rate) 
+rates | N | Array | List of rates. See [Rate] (#rate) 
 
 ## Rate
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 shipnerdService | N | String | ShipNerd service. Available values are hyperspeed, fastest, faster and fast
-carrierService | N | String | The carrier (UPS, Fedex or DHL) service
-breakdown | N | Object | The rate breakdown. See [Breakdown] (#breakdown)
-currency | N | String | The rate currency
-billingWeight | N | Number | Billing weight the rate is based on
+carrierService | N | String | The carrier service
+breakdown | N | Object | Rate breakdown. See [Breakdown] (#breakdown)
+currency | N | String | Rate currency
+billingWeight | N | Number | The Billing weight rate is based on
 
 ## Breakdown
 
@@ -477,5 +477,5 @@ label | N | String | Url to the generated label
 
 # Limits
 
-Maximum of 10 requests per 5 minutes per client. 
+Max of 10 requests per 5 minutes per client. 
 Additional requests will result in an HTTP 429 (Too Many Requests) error.
