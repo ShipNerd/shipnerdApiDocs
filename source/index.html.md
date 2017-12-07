@@ -315,11 +315,19 @@ request.post({
   "data": [
     {
       "orderId": "1512154689639",
-      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9"
+      "carrier": "ups",
+      "service": "UPS Next Day Air",
+      "trackingNumber": "1Z4Y13A80197787255",
+      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9",
+      "labelExpirationDate": "Monday, December 11th, 2017 at 11:59 p.m. PST"
     },
     {
       "orderId": "1512155343427",
-      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9"
+      "carrier": "ups",
+      "service": "UPS Standard",
+      "trackingNumber": "1Z3Y91E02097859784",
+      "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9",
+      "labelExpirationDate": "Monday, December 11th, 2017 at 11:59 p.m. PST"
     }
   ]
 }
@@ -473,9 +481,22 @@ percentage | N | Number | Tax percentage
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 orderId | N | String | The created order ID
+carrier | N | String | Carrier name
+service | N | String | Service name
+trackingNumber | N | String | Shipment tracking number
 label | N | String | Url to the generated label
+labelExpirationDate | N | String | Label expiration date
 
 # Limits
 
-Max of 10 requests per 5 minutes per client. 
+## Get Rates
+
+Max of 15 requests per 1 minute per client. 
+
+## Create Labels
+
+Max of 5 requests per 1 minute per client.
+
+<aside class="notice">
 Additional requests will result in an HTTP 429 (Too Many Requests) error.
+</aside>
