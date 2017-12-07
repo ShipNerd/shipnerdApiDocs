@@ -281,6 +281,14 @@
           </li>
           <li>
             <a href="#limits" class="toc-h1 toc-link" data-title="Limits">Limits</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-rates-2" class="toc-h2 toc-link" data-title="Get Rates">Get Rates</a>
+                  </li>
+                  <li>
+                    <a href="#create-labels-2" class="toc-h2 toc-link" data-title="Create Labels">Create Labels</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -607,11 +615,19 @@ Max number of shipments allowed per request is 10
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512154689639"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&amp;mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9"</span><span class="w">
+      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ups"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Z4Y13A80197787255"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&amp;mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512155343427"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&amp;mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9"</span><span class="w">
+      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ups"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Standard"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Z3Y91E02097859784"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&amp;mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1140,15 +1156,44 @@ Max number of shipments allowed per request is 10
 <td>The created order ID</td>
 </tr>
 <tr>
+<td>carrier</td>
+<td>N</td>
+<td>String</td>
+<td>Carrier name</td>
+</tr>
+<tr>
+<td>service</td>
+<td>N</td>
+<td>String</td>
+<td>Service name</td>
+</tr>
+<tr>
+<td>trackingNumber</td>
+<td>N</td>
+<td>String</td>
+<td>Shipment tracking number</td>
+</tr>
+<tr>
 <td>label</td>
 <td>N</td>
 <td>String</td>
 <td>Url to the generated label</td>
 </tr>
+<tr>
+<td>labelExpirationDate</td>
+<td>N</td>
+<td>String</td>
+<td>Label expiration date</td>
+</tr>
 </tbody></table>
-<h1 id='limits'>Limits</h1>
-<p>Max of 10 requests per 5 minutes per client. 
-Additional requests will result in an HTTP 429 (Too Many Requests) error.</p>
+<h1 id='limits'>Limits</h1><h2 id='get-rates-2'>Get Rates</h2>
+<p>Max of 15 requests per 1 minute per client. </p>
+<h2 id='create-labels-2'>Create Labels</h2>
+<p>Max of 5 requests per 1 minute per client.</p>
+
+<aside class="notice">
+Additional requests will result in an HTTP 429 (Too Many Requests) error.
+</aside>
 <h1 id='errors'>Errors</h1>
 <table><thead>
 <tr>
