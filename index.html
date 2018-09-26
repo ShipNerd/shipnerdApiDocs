@@ -260,6 +260,9 @@
                     <a href="#commodity" class="toc-h2 toc-link" data-title="Commodity">Commodity</a>
                   </li>
                   <li>
+                    <a href="#charge-account" class="toc-h2 toc-link" data-title="Charge Account">Charge Account</a>
+                  </li>
+                  <li>
                     <a href="#rate-results" class="toc-h2 toc-link" data-title="Rate Results">Rate Results</a>
                   </li>
                   <li>
@@ -411,8 +414,8 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hyperspeed"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05 by 10:30 am"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.16"</span><span class="p">,</span><span class="w">
@@ -430,8 +433,8 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
           </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fastest"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air Saver"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Next Day Air Saver"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05 by 03:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.87"</span><span class="p">,</span><span class="w">
@@ -449,8 +452,8 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
           </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faster"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS 2nd Day Air"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS 2nd Day Air"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed December 06 by 11:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44.15"</span><span class="p">,</span><span class="w">
@@ -468,8 +471,8 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
           </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"shipnerdService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierService"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Ground"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPS Ground"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon December 11 by 11:00 pm"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.99"</span><span class="p">,</span><span class="w">
@@ -580,13 +583,13 @@ Max number of shipments allowed per request is 10
     <span class="na">height</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
     <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span>
   <span class="p">}],</span>
-  <span class="na">shipnerdService</span><span class="p">:</span> <span class="s1">'hyperspeed'</span>
+  <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'11'</span>
 <span class="p">}</span>
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">shipment</span><span class="p">);</span>
 
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
   <span class="na">orderId</span><span class="p">:</span> <span class="s1">'1512154689639'</span><span class="p">,</span>
-  <span class="na">shipnerdService</span><span class="p">:</span> <span class="s1">'faster'</span>
+  <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'65'</span>
 <span class="p">})</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
@@ -724,13 +727,19 @@ Max number of shipments allowed per request is 10
 <td>List of packages. Should be present only if &#39;your_packaging&#39; is used as packagingType. See <a href="#package">Package</a></td>
 </tr>
 <tr>
-<td>isSignature</td>
+<td>isSignatureRequired</td>
 <td>Y</td>
 <td>Boolean</td>
 <td>Is signature required</td>
 </tr>
 <tr>
-<td>isResidential</td>
+<td>isAdultSignatureRequired</td>
+<td>Y</td>
+<td>Boolean</td>
+<td>Is adult signature required</td>
+</tr>
+<tr>
+<td>isResidentialAddress</td>
 <td>Y</td>
 <td>Boolean</td>
 <td>Is residential address</td>
@@ -742,10 +751,10 @@ Max number of shipments allowed per request is 10
 <td>Must be up to 30 chars</td>
 </tr>
 <tr>
-<td>service</td>
+<td>serviceCode</td>
 <td>N</td>
 <td>String</td>
-<td>Available values are &#39;hyperspeed&#39;, &#39;fastest&#39;, &#39;faster&#39; and &#39;fast&#39;. Not all services are availale for every shipment. Will be ignored in rates call.</td>
+<td>Desired service code for creating the label. Must be a valid service code for the specific shipment. Will be ignored in rates call.</td>
 </tr>
 <tr>
 <td>customsInfo</td>
@@ -809,7 +818,7 @@ Max number of shipments allowed per request is 10
 <td>country</td>
 <td>N</td>
 <td>String</td>
-<td>2 letters country code. We currently only support CA-&gt;CA, CA-&gt;US, CA-&gt;IL, CA-&gt;GB, CA-&gt;FR, CA-&gt;AU, CA-&gt;CN, CA-&gt;DE, CA-&gt;GR, CA-&gt;IT, CA-&gt;JP, CA-&gt;ES, CA-&gt;CH, CA-&gt;PH, CA-&gt;PK, CA-&gt;SE, CA-&gt;IN, CA-&gt;MX, CA-&gt;BR, US-&gt;US</td>
+<td>2 letters country code. Must be a supported origin and destination. Please check &#39;Ship Page&#39; for more information.</td>
 </tr>
 <tr>
 <td>phone</td>
@@ -886,6 +895,18 @@ Max number of shipments allowed per request is 10
 </tr>
 </thead><tbody>
 <tr>
+<td>isFreeDomicile</td>
+<td>Y</td>
+<td>Boolean</td>
+<td>Sets the shipment as free domicile. Works only if free domicile is enabled for user&#39;s account.</td>
+</tr>
+<tr>
+<td>chargeAccount</td>
+<td>Y</td>
+<td>Object</td>
+<td>Sets the account to charge duties and taxes on free domicile shipments. See <a href="#chargeaccount">ChargeAccount</a></td>
+</tr>
+<tr>
 <td>documents</td>
 <td>Y</td>
 <td>Object</td>
@@ -958,6 +979,12 @@ Max number of shipments allowed per request is 10
 <td>Must be up to 35 chars and include at least 2 words</td>
 </tr>
 <tr>
+<td>hsCode</td>
+<td>Y</td>
+<td>String</td>
+<td>Must be between 6 to 14 chars</td>
+</tr>
+<tr>
 <td>manufactureCountry</td>
 <td>N</td>
 <td>String</td>
@@ -994,6 +1021,34 @@ Max number of shipments allowed per request is 10
 <td>Value of commodity</td>
 </tr>
 </tbody></table>
+<h2 id='charge-account'>Charge Account</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>N</td>
+<td>String</td>
+<td>Account number</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>N</td>
+<td>String</td>
+<td>Registered account postal code</td>
+</tr>
+<tr>
+<td>countryCode</td>
+<td>N</td>
+<td>String</td>
+<td>Registered account country code</td>
+</tr>
+</tbody></table>
 <h2 id='rate-results'>Rate Results</h2>
 <table><thead>
 <tr>
@@ -1020,16 +1075,22 @@ Max number of shipments allowed per request is 10
 </tr>
 </thead><tbody>
 <tr>
-<td>shipnerdService</td>
+<td>carrierServiceCode</td>
 <td>N</td>
 <td>String</td>
-<td>ShipNerd service. Available values are hyperspeed, fastest, faster and fast</td>
+<td>The carrier serivce code</td>
 </tr>
 <tr>
-<td>carrierService</td>
+<td>carrierServiceName</td>
 <td>N</td>
 <td>String</td>
-<td>The carrier service</td>
+<td>The carrier service name</td>
+</tr>
+<tr>
+<td>deliveryTime</td>
+<td>N</td>
+<td>String</td>
+<td>The estimated delivery time</td>
 </tr>
 <tr>
 <td>breakdown</td>
