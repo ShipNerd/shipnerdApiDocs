@@ -408,7 +408,7 @@ value | Y | Number | Declared value of package
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 isFreeDomicile | Y | Boolean | Sets the shipment as free domicile. Works only if free domicile is enabled for user's account.
-chargeAccount | Y | Object | Sets the account to charge duties and taxes on free domicile shipments. See [ChargeAccount] (#chargeaccount) 
+chargeAccount | Y | Object | Sets the account to charge duties and taxes on free domicile shipments. See [ChargeAccount] (#charge-account) 
 documents | Y | Object | Describes a documents shipment. See [Documents] (#documents)
 commodities | Y | Object | Describes a non-documents shipment. See [Commodities] (#commodities)
 
