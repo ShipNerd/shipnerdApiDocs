@@ -131,8 +131,8 @@ request.post({
     {
       "rates": [
         {
-          "shipnerdService": "hyperspeed",
-          "carrierService": "UPS Next Day Air",
+          "carrierServiceCode": "65",
+          "carrierServiceName": "UPS Next Day Air",
           "deliveryTime": "Tue December 05 by 10:30 am",
           "breakdown": {
             "transportation": "80.16",
@@ -150,8 +150,8 @@ request.post({
           "billingWeight": 11
         },
         {
-          "shipnerdService": "fastest",
-          "carrierService": "UPS Next Day Air Saver",
+          "carrierServiceCode": "12",
+          "carrierServiceName": "UPS Next Day Air Saver",
           "deliveryTime": "Tue December 05 by 03:00 pm",
           "breakdown": {
             "transportation": "69.87",
@@ -169,8 +169,8 @@ request.post({
           "billingWeight": 11
         },
         {
-          "shipnerdService": "faster",
-          "carrierService": "UPS 2nd Day Air",
+          "carrierServiceCode": "08",
+          "carrierServiceName": "UPS 2nd Day Air",
           "deliveryTime": "Wed December 06 by 11:00 pm",
           "breakdown": {
             "transportation": "44.15",
@@ -188,8 +188,8 @@ request.post({
           "billingWeight": 11
         },
         {
-          "shipnerdService": "fast",
-          "carrierService": "UPS Ground",
+          "carrierServiceCode": "11",
+          "carrierServiceName": "UPS Ground",
           "deliveryTime": "Mon December 11 by 11:00 pm",
           "breakdown": {
             "transportation": "13.99",
@@ -279,13 +279,13 @@ var shipment = {
     height: 12,
     dimensionUnits: 'in'
   }],
-  shipnerdService: 'hyperspeed'
+  serviceCode: '11'
 }
 shipments.push(shipment);
 
 shipments.push({
   orderId: '1512154689639',
-  shipnerdService: 'faster'
+  serviceCode: '65'
 })
 
 request.post({
@@ -369,10 +369,11 @@ from | N | Object | Sender's information. See [Address] (#address)
 to | N | Object | Receiver's information. See [Address] (#address)
 packagingType | N | String | Available values are 'your_packaging' and 'envelope'
 packages | Cond | Array | List of packages. Should be present only if 'your_packaging' is used as packagingType. See [Package] (#package)
-isSignature | Y | Boolean | Is signature required
-isResidential | Y | Boolean | Is residential address
+isSignatureRequired | Y | Boolean | Is signature required
+isAdultSignatureRequired | Y | Boolean | Is adult signature required
+isResidentialAddress | Y | Boolean | Is residential address
 referenceNumber | Y | String | Must be up to 30 chars
-service | N | String | Available values are 'hyperspeed', 'fastest', 'faster' and 'fast'. Not all services are availale for every shipment. Will be ignored in rates call.
+serviceCode | N | String | Desired service code for creating the label. Must be a valid service code for the specific shipment. Will be ignored in rates call.
 customsInfo | Cond | Object | Should be present for international shipments. See [Customs] (#customs)
 
 ## Address
@@ -386,7 +387,7 @@ address2 | Y | String | Must be up to 35 chars
 city | N | String | Must be up to 30 chars
 state | Cond | String | 2 letters state code. Mandatory only for countries with states.
 zipCode | N | String | A valid zip code for the address
-country | N | String | 2 letters country code. We currently only support CA->CA, CA->US, CA->IL, CA->GB, CA->FR, CA->AU, CA->CN, CA->DE, CA->GR, CA->IT, CA->JP, CA->ES, CA->CH, CA->PH, CA->PK, CA->SE, CA->IN, CA->MX, CA->BR, US->US
+country | N | String | 2 letters country code. Must be a supported origin and destination. Please check 'Ship Page' for more information.
 phone | N | String | Must be between 10-15 chars including 10 digits
 email | N | String | A valid email address
 
@@ -406,6 +407,8 @@ value | Y | Number | Declared value of package
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
+isFreeDomicile | Y | Boolean | Sets the shipment as free domicile. Works only if free domicile is enabled for user's account.
+chargeAccount | Y | Object | Sets the account to charge duties and taxes on free domicile shipments. See [ChargeAccount] (#chargeaccount) 
 documents | Y | Object | Describes a documents shipment. See [Documents] (#documents)
 commodities | Y | Object | Describes a non-documents shipment. See [Commodities] (#commodities)
 
@@ -428,12 +431,21 @@ commodities | N | Array | List of commodities. See [Commodity] (#commodity)
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 description | N | String | Must be up to 35 chars and include at least 2 words
+hsCode | Y | String | Must be between 6 to 14 chars
 manufactureCountry | N | String | 2 letters country code
 quantity | N | Whole Number | Number of pieces
 quantityUnits | N | String | Available values are - 'EA' = each, 'PCS' = pieces and 'PRS' = pairs (Please use same case)
 weight | N | Number | Commodity weight
 weightUnits| N | String | Available values are 'lbs' and 'kgs'. Must be the same unit as the packages' weight 
 value | N | Number | Value of commodity
+
+## Charge Account
+
+Parameter | Optional | Type | Description
+--------- | -------- | ---- | -----------
+accountNumber | N | String | Account number
+postalCode | N | String | Registered account postal code
+countryCode | N | String | Registered account country code
 
 ## Rate Results
 
@@ -445,8 +457,9 @@ rates | N | Array | List of rates. See [Rate] (#rate)
 
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
-shipnerdService | N | String | ShipNerd service. Available values are hyperspeed, fastest, faster and fast
-carrierService | N | String | The carrier service
+carrierServiceCode | N | String | The carrier serivce code
+carrierServiceName | N | String | The carrier service name
+deliveryTime | N | String | The estimated delivery time
 breakdown | N | Object | Rate breakdown. See [Breakdown] (#breakdown)
 currency | N | String | Rate currency
 billingWeight | N | Number | The Billing weight rate is based on
