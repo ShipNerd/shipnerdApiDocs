@@ -131,17 +131,12 @@ request.post({
     {
       "rates": [
         {
-          "carrierServiceCode": "65",
-          "carrierServiceName": "UPS Next Day Air",
-          "deliveryTime": "Tue December 05 by 10:30 am",
+          "carrierServiceCode": "[code]",
+          "carrierServiceName": "[service name]",
+          "deliveryTime": "Tue December 05",
           "breakdown": {
             "transportation": "80.16",
-            "accessorials": [
-              {
-                "name": "DELIVERY AREA",
-                "price": 0
-              }
-            ],
+            "accessorials": [],
             "subtotal": 80.16,
             "taxes": {},
             "total": 80.16
@@ -150,17 +145,12 @@ request.post({
           "billingWeight": 11
         },
         {
-          "carrierServiceCode": "12",
-          "carrierServiceName": "UPS Next Day Air Saver",
-          "deliveryTime": "Tue December 05 by 03:00 pm",
+          "carrierServiceCode": "[code]",
+          "carrierServiceName": "[service name]",
+          "deliveryTime": "Tue December 05",
           "breakdown": {
             "transportation": "69.87",
-            "accessorials": [
-              {
-                "name": "DELIVERY AREA",
-                "price": 0
-              }
-            ],
+            "accessorials": [],
             "subtotal": 69.87,
             "taxes": {},
             "total": 69.87
@@ -169,17 +159,12 @@ request.post({
           "billingWeight": 11
         },
         {
-          "carrierServiceCode": "08",
-          "carrierServiceName": "UPS 2nd Day Air",
-          "deliveryTime": "Wed December 06 by 11:00 pm",
+          "carrierServiceCode": "[code]",
+          "carrierServiceName": "[service name]",
+          "deliveryTime": "Wed December 06",
           "breakdown": {
             "transportation": "44.15",
-            "accessorials": [
-              {
-                "name": "DELIVERY AREA",
-                "price": 0
-              }
-            ],
+            "accessorials": [],
             "subtotal": 44.15,
             "taxes": {},
             "total": 44.15
@@ -188,17 +173,12 @@ request.post({
           "billingWeight": 11
         },
         {
-          "carrierServiceCode": "11",
-          "carrierServiceName": "UPS Ground",
-          "deliveryTime": "Mon December 11 by 11:00 pm",
+          "carrierServiceCode": "[code]",
+          "carrierServiceName": "[service name]",
+          "deliveryTime": "Mon December 11",
           "breakdown": {
             "transportation": "13.99",
-            "accessorials": [
-              {
-                "name": "DELIVERY AREA",
-                "price": 0
-              }
-            ],
+            "accessorials": [],
             "subtotal": 13.99,
             "taxes": {},
             "total": 13.99
@@ -315,17 +295,17 @@ request.post({
   "data": [
     {
       "orderId": "1512154689639",
-      "carrier": "ups",
-      "service": "UPS Next Day Air",
-      "trackingNumber": "1Z4Y13A80197787255",
+      "carrier": "[carrier]",
+      "service": "[service]",
+      "trackingNumber": "[tracking number]",
       "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9",
       "labelExpirationDate": "Monday, December 11th, 2017 at 11:59 p.m. PST"
     },
     {
       "orderId": "1512155343427",
-      "carrier": "ups",
-      "service": "UPS Standard",
-      "trackingNumber": "1Z3Y91E02097859784",
+      "carrier": "[carrier]",
+      "service": "[service]",
+      "trackingNumber": "[tracking number]",
       "label": "https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9",
       "labelExpirationDate": "Monday, December 11th, 2017 at 11:59 p.m. PST"
     }
