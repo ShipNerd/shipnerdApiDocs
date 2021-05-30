@@ -254,16 +254,13 @@
                     <a href="#documents" class="toc-h2 toc-link" data-title="Documents">Documents</a>
                   </li>
                   <li>
-                    <a href="#commodities" class="toc-h2 toc-link" data-title="Commodities">Commodities</a>
-                  </li>
-                  <li>
                     <a href="#commodity" class="toc-h2 toc-link" data-title="Commodity">Commodity</a>
                   </li>
                   <li>
                     <a href="#charge-account" class="toc-h2 toc-link" data-title="Charge Account">Charge Account</a>
                   </li>
                   <li>
-                    <a href="#rate-results" class="toc-h2 toc-link" data-title="Rate Results">Rate Results</a>
+                    <a href="#rate-result" class="toc-h2 toc-link" data-title="Rate Result">Rate Result</a>
                   </li>
                   <li>
                     <a href="#rate" class="toc-h2 toc-link" data-title="Rate">Rate</a>
@@ -309,7 +306,7 @@
 
 <p>ShipNerd makes shipping quick, easy and affordable. No hidden fees, no volume commitments, huge discounts and we only ship with the best in the business. Get your free account today, and make the smarter shipping choice.</p>
 
-<p>Our shipping API enables you to instanly obtain shipping quotes and create labels. It&#39;s quick &amp; easy, follow the instructions and start shipping today.</p>
+<p>Our shipping API enables you to instantly obtain shipping quotes and create labels. It&#39;s quick &amp; easy, follow the instructions and start shipping today.</p>
 <h1 id='authentication'>Authentication</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
@@ -372,29 +369,26 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
   <span class="p">},</span>
   <span class="na">referenceNumber</span><span class="p">:</span> <span class="s1">'Nerds Rule'</span><span class="p">,</span>
   <span class="na">packagingType</span><span class="p">:</span> <span class="s1">'your_packaging'</span><span class="p">,</span>
+  <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
+  <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span><span class="p">,</span>
   <span class="na">packages</span><span class="p">:</span> <span class="p">[{</span>
-    <span class="na">weight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="mi">10</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="na">weight</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
     <span class="na">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
     <span class="na">length</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">height</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">12</span>
   <span class="p">}]</span>
 <span class="p">}</span>
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">shipment</span><span class="p">);</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s2">"https://shipnerd.com/api/1.0/get_rates"</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s2">"https://api.shipnerd.com/rates"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Authorization'</span><span class="p">:</span> <span class="s1">'JWT [API_TOKEN]'</span>
     <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">shipments</span><span class="p">:</span> <span class="nx">shipments</span>
-    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">shipments</span><span class="p">,</span>
     <span class="na">json</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">){</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
@@ -410,12 +404,15 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nerds Rule"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.16"</span><span class="p">,</span><span class="w">
@@ -425,11 +422,13 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
             </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">80.16</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"saturdayDelivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue December 05"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.87"</span><span class="p">,</span><span class="w">
@@ -439,11 +438,13 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
             </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">69.87</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"saturdayDelivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed December 06"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44.15"</span><span class="p">,</span><span class="w">
@@ -453,11 +454,13 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
             </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.15</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"saturdayDelivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"carrierServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"carrierServiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[code]"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service name]"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"deliveryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon December 11"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"breakdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"transportation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.99"</span><span class="p">,</span><span class="w">
@@ -467,7 +470,8 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
             </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.99</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+          </span><span class="s2">"billingWeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"saturdayDelivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -478,7 +482,7 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
 </span></code></pre>
 <p>Returns rates for the requested shipments</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://www.shipnerd.com/api/1.0/get_rates</code></p>
+<p><code>POST https://api.shipnerd.com/rates</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
@@ -511,10 +515,10 @@ You must replace <code>[API_TOKEN]</code> with your personal API token.
 <td>Status of operation</td>
 </tr>
 <tr>
-<td>data</td>
+<td>results</td>
 <td>N</td>
 <td>Array</td>
-<td>Rate results. See <a href="#rate-results">Rate Results</a></td>
+<td>Rate results. See <a href="#rate-result">Rate Result</a></td>
 </tr>
 </tbody></table>
 
@@ -527,59 +531,109 @@ Max number of shipments allowed per request is 10
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">shipments</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="kd">var</span> <span class="nx">shipment</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">from</span><span class="p">:{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'John Doe'</span><span class="p">,</span>
-    <span class="na">company</span><span class="p">:</span> <span class="s1">'Acme Labs'</span><span class="p">,</span>
-    <span class="na">country</span><span class="p">:</span> <span class="s1">'US'</span><span class="p">,</span>
-    <span class="na">address1</span><span class="p">:</span> <span class="s1">'111 8th Ave'</span><span class="p">,</span>
-    <span class="na">address2</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-    <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'10011'</span><span class="p">,</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
-    <span class="na">state</span><span class="p">:</span> <span class="s1">'NY'</span><span class="p">,</span>
-    <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
-    <span class="na">email</span><span class="p">:</span> <span class="s1">'john@acmelabs.com'</span>  
-  <span class="p">},</span>
-  <span class="na">to</span><span class="p">:{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Ned Flanders'</span><span class="p">,</span>
-    <span class="na">company</span><span class="p">:</span> <span class="s1">'Simpsons Labs'</span><span class="p">,</span>
-    <span class="na">country</span><span class="p">:</span> <span class="s1">'US'</span><span class="p">,</span>
-    <span class="na">address1</span><span class="p">:</span> <span class="s1">'300 Post St'</span><span class="p">,</span>
-    <span class="na">address2</span><span class="p">:</span> <span class="s1">'Suite 152'</span><span class="p">,</span>
-    <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'94108'</span><span class="p">,</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s1">'San Francisco'</span><span class="p">,</span>
-    <span class="na">state</span><span class="p">:</span> <span class="s1">'CA'</span><span class="p">,</span>
-    <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
-    <span class="na">email</span><span class="p">:</span> <span class="s1">'ned@simpsons.com'</span> 
-  <span class="p">},</span>
-  <span class="na">referenceNumber</span><span class="p">:</span> <span class="s1">'Nerds Rule'</span><span class="p">,</span>
-  <span class="na">packagingType</span><span class="p">:</span> <span class="s1">'your_packaging'</span><span class="p">,</span>
-  <span class="na">packages</span><span class="p">:</span> <span class="p">[{</span>
-    <span class="na">weight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
-    <span class="na">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">length</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">height</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span>
-  <span class="p">}],</span>
-  <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'11'</span>
-<span class="p">}</span>
-<span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">shipment</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">shipments</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-  <span class="na">orderId</span><span class="p">:</span> <span class="s1">'1512154689639'</span><span class="p">,</span>
-  <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'65'</span>
+    <span class="na">from</span><span class="p">:{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="s1">'John Doe'</span><span class="p">,</span>
+        <span class="na">company</span><span class="p">:</span> <span class="s1">'Acme Labs'</span><span class="p">,</span>
+        <span class="na">country</span><span class="p">:</span> <span class="s1">'US'</span><span class="p">,</span>
+        <span class="na">address1</span><span class="p">:</span> <span class="s1">'111 8th Ave'</span><span class="p">,</span>
+        <span class="na">address2</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'10011'</span><span class="p">,</span>
+        <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
+        <span class="na">state</span><span class="p">:</span> <span class="s1">'NY'</span><span class="p">,</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
+        <span class="na">email</span><span class="p">:</span> <span class="s1">'john@acmelabs.com'</span>  
+    <span class="p">},</span>
+    <span class="na">to</span><span class="p">:{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="s1">'Ned Flanders'</span><span class="p">,</span>
+        <span class="na">company</span><span class="p">:</span> <span class="s1">'Simpsons Labs'</span><span class="p">,</span>
+        <span class="na">country</span><span class="p">:</span> <span class="s1">'US'</span><span class="p">,</span>
+        <span class="na">address1</span><span class="p">:</span> <span class="s1">'300 Post St'</span><span class="p">,</span>
+        <span class="na">address2</span><span class="p">:</span> <span class="s1">'Suite 152'</span><span class="p">,</span>
+        <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'94108'</span><span class="p">,</span>
+        <span class="na">city</span><span class="p">:</span> <span class="s1">'San Francisco'</span><span class="p">,</span>
+        <span class="na">state</span><span class="p">:</span> <span class="s1">'CA'</span><span class="p">,</span>
+        <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
+        <span class="na">email</span><span class="p">:</span> <span class="s1">'ned@simpsons.com'</span> 
+    <span class="p">},</span>
+    <span class="na">referenceNumber</span><span class="p">:</span> <span class="s1">'Nerds Rule'</span><span class="p">,</span>
+    <span class="na">packagingType</span><span class="p">:</span> <span class="s1">'your_packaging'</span><span class="p">,</span>
+    <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
+    <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span><span class="p">,</span>
+    <span class="na">packages</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">weight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="na">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="na">length</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="na">height</span><span class="p">:</span> <span class="mi">12</span>
+    <span class="p">}],</span>
+    <span class="na">carrierName</span><span class="p">:</span> <span class="s1">'[carrier]'</span><span class="p">,</span>
+    <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'[code]'</span>
+<span class="p">})</span>
+
+<span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+    <span class="na">orderId</span><span class="p">:</span> <span class="s1">'1512154689639'</span><span class="p">,</span>
+    <span class="na">carrierName</span><span class="p">:</span> <span class="s1">'[carrier]'</span><span class="p">,</span>
+    <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'[code]'</span>
+<span class="p">})</span>
+
+<span class="nx">shipments</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+    <span class="na">from</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">name</span><span class="p">:</span> <span class="s1">'John Doe'</span><span class="p">,</span>
+       <span class="na">company</span><span class="p">:</span> <span class="s1">'Acme Labs'</span><span class="p">,</span>
+       <span class="na">country</span><span class="p">:</span> <span class="s1">'CA'</span><span class="p">,</span>
+       <span class="na">address1</span><span class="p">:</span> <span class="s1">'80 Cumberland'</span><span class="p">,</span>
+       <span class="na">address2</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+       <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'M5R3V1'</span><span class="p">,</span>
+       <span class="na">city</span><span class="p">:</span> <span class="s1">'Toronto'</span><span class="p">,</span>
+       <span class="na">state</span><span class="p">:</span> <span class="s1">'ON'</span><span class="p">,</span>
+       <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
+       <span class="na">email</span><span class="p">:</span> <span class="s1">'john@acmelabs.com'</span>
+    <span class="p">},</span>
+    <span class="na">to</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">name</span><span class="p">:</span> <span class="s1">'Ned Flanders'</span><span class="p">,</span>
+       <span class="na">company</span><span class="p">:</span> <span class="s1">'Simpsons Labs'</span><span class="p">,</span>
+       <span class="na">country</span><span class="p">:</span> <span class="s1">'US'</span><span class="p">,</span>
+       <span class="na">address1</span><span class="p">:</span> <span class="s1">'171 w 71st'</span><span class="p">,</span>
+       <span class="na">address2</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+       <span class="na">zipCode</span><span class="p">:</span> <span class="s1">'10023'</span><span class="p">,</span>
+       <span class="na">city</span><span class="p">:</span> <span class="s1">'New York'</span><span class="p">,</span>
+       <span class="na">state</span><span class="p">:</span> <span class="s1">'NY'</span><span class="p">,</span>
+       <span class="na">phone</span><span class="p">:</span> <span class="s1">'1234567890'</span>
+    <span class="p">},</span>
+    <span class="na">referenceNumber</span><span class="p">:</span> <span class="s1">'Nerds Rule 1'</span><span class="p">,</span>
+    <span class="na">packagingType</span><span class="p">:</span> <span class="s1">'your_packaging'</span><span class="p">,</span>
+    <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
+    <span class="na">dimensionUnits</span><span class="p">:</span> <span class="s1">'in'</span><span class="p">,</span>
+    <span class="na">packages</span><span class="p">:</span> <span class="p">[{</span>
+       <span class="na">weight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+       <span class="na">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+       <span class="na">length</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+       <span class="na">height</span><span class="p">:</span> <span class="mi">12</span>
+    <span class="p">}],</span>
+    <span class="na">customsInfo</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">reasonForExport</span><span class="p">:</span> <span class="s1">'commercial'</span><span class="p">,</span>
+        <span class="na">commodities</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="na">description</span><span class="p">:</span> <span class="s1">'A white shirt'</span><span class="p">,</span>
+            <span class="na">manufactureCountry</span><span class="p">:</span> <span class="s1">'CA'</span><span class="p">,</span>
+            <span class="na">quantity</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="na">quantityUnits</span><span class="p">:</span> <span class="s1">'PCS'</span><span class="p">,</span>
+            <span class="na">weight</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="na">weightUnits</span><span class="p">:</span> <span class="s1">'lbs'</span><span class="p">,</span>
+            <span class="na">value</span><span class="p">:</span> <span class="mi">100</span>
+        <span class="p">}]</span>
+    <span class="p">},</span>
+    <span class="na">carrierName</span><span class="p">:</span> <span class="s1">'[carrier]'</span><span class="p">,</span>
+    <span class="na">serviceCode</span><span class="p">:</span> <span class="s1">'[code]'</span>
 <span class="p">})</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
-    <span class="na">url</span><span class="p">:</span> <span class="s2">"https://shipnerd.com/api/1.0/create_labels"</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s2">"https://api.shipnerd.com/labels"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Authorization'</span><span class="p">:</span> <span class="s1">'JWT [API_TOKEN]'</span>
     <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">shipments</span><span class="p">:</span> <span class="nx">shipments</span>
-    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">shipments</span><span class="p">,</span>
     <span class="na">json</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">){</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
@@ -595,30 +649,40 @@ Max number of shipments allowed per request is 10
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512154689639"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[tracking number]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512154689639&amp;mediaId=Byx8kFQ1Zz57cf395fc8effbb528e279b9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512154689639"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nerds Rule"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[tracking number]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"packingSlip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512155343427"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[tracking number]"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shipnerd.com/api/website/label/get_pdf?orderId=1512155343427&amp;mediaId=r1G81Y7y-G57cf395fc8effbb528e279b9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1512155343427"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[carrier]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[service]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trackingNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[tracking number]"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"packingSlip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday, December 11th, 2017 at 11:59 p.m. PST"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nerds Rule 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"International shipments should have customs information"</span><span class="w">
+    </span><span class="p">}</span><span class="w">   
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>Creates labels for the requested shipments</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://www.shipnerd.com/api/1.0/create_labels</code></p>
+<p><code>POST https://api.shipnerd.com/labels</code></p>
 <h3 id='body-parameters-2'>Body Parameters</h3>
 <table><thead>
 <tr>
@@ -651,10 +715,10 @@ Max number of shipments allowed per request is 10
 <td>Status of operation</td>
 </tr>
 <tr>
-<td>data</td>
+<td>results</td>
 <td>N</td>
 <td>Array</td>
-<td>Label Results. See <a href="#label-result">Label Results</a></td>
+<td>Label Results. See <a href="#label-result">Label Result</a></td>
 </tr>
 </tbody></table>
 
@@ -674,13 +738,7 @@ Max number of shipments allowed per request is 10
 <td>orderId</td>
 <td>Y</td>
 <td>String</td>
-<td>Will be ignored in rates call. If used in create_labels call - the order will be referenced and all other fields will be ignored. Unless used with &#39;isUpdate&#39; field</td>
-</tr>
-<tr>
-<td>isUpdate</td>
-<td>Y</td>
-<td>Boolean</td>
-<td>Only used together with orderId field. If set to true, all other fields must be specified (from, to, packagingType ... ). Order will be updated with new values</td>
+<td>Will be ignored in rates call. If used in create_labels call - the order will be referenced and all other fields will be ignored.</td>
 </tr>
 <tr>
 <td>from</td>
@@ -695,10 +753,28 @@ Max number of shipments allowed per request is 10
 <td>Receiver&#39;s information. See <a href="#address">Address</a></td>
 </tr>
 <tr>
+<td>referenceNumber</td>
+<td>Y</td>
+<td>String</td>
+<td>Must be up to 30 chars</td>
+</tr>
+<tr>
 <td>packagingType</td>
 <td>N</td>
 <td>String</td>
 <td>Available values are &#39;your_packaging&#39; and &#39;envelope&#39;</td>
+</tr>
+<tr>
+<td>weightUnits</td>
+<td>N</td>
+<td>String</td>
+<td>Available values are &#39;lbs&#39; and &#39;kgs&#39; (Please use lowercase)</td>
+</tr>
+<tr>
+<td>dimensionUnits</td>
+<td>N</td>
+<td>String</td>
+<td>Available values are &#39;in&#39; and &#39;cm&#39;; &#39;lbs&#39; must be used with &#39;in&#39; and &#39;kgs&#39; with &#39;cm&#39;</td>
 </tr>
 <tr>
 <td>packages</td>
@@ -725,10 +801,10 @@ Max number of shipments allowed per request is 10
 <td>Is residential address</td>
 </tr>
 <tr>
-<td>referenceNumber</td>
-<td>Y</td>
+<td>carrierName</td>
+<td>N</td>
 <td>String</td>
-<td>Must be up to 30 chars</td>
+<td>Desired carrier name for creating the label. Must be a valid carrier name for the specific shipment. Will be ignored in rates call.</td>
 </tr>
 <tr>
 <td>serviceCode</td>
@@ -808,9 +884,9 @@ Max number of shipments allowed per request is 10
 </tr>
 <tr>
 <td>email</td>
-<td>N</td>
+<td>Cond</td>
 <td>String</td>
-<td>A valid email address</td>
+<td>A valid email address (optional only under &quot;to&quot; field)</td>
 </tr>
 </tbody></table>
 <h2 id='package'>Package</h2>
@@ -827,12 +903,6 @@ Max number of shipments allowed per request is 10
 <td>N</td>
 <td>Number</td>
 <td>For &#39;lbs&#39; min value is 2 and max value is 150. For &#39;kgs&#39; min value is 1 and max value is 68</td>
-</tr>
-<tr>
-<td>weightUnits</td>
-<td>N</td>
-<td>String</td>
-<td>Available values are &#39;lbs&#39; and &#39;kgs&#39; (Please use lowercase)</td>
 </tr>
 <tr>
 <td>length</td>
@@ -853,16 +923,10 @@ Max number of shipments allowed per request is 10
 <td>Must be used together with &#39;width&#39; &amp; &#39;length&#39; fields</td>
 </tr>
 <tr>
-<td>dimensionUnits</td>
-<td>Cond</td>
-<td>String</td>
-<td>Must be used when dimensions are specified. &#39;lbs&#39; must be used with &#39;in&#39; and &#39;kgs&#39; must be used with &#39;cm&#39;</td>
-</tr>
-<tr>
 <td>value</td>
 <td>Y</td>
 <td>Number</td>
-<td>Declared value of package</td>
+<td>Insurance value for package</td>
 </tr>
 </tbody></table>
 <h2 id='customs'>Customs</h2>
@@ -893,10 +957,16 @@ Max number of shipments allowed per request is 10
 <td>Describes a documents shipment. See <a href="#documents">Documents</a></td>
 </tr>
 <tr>
+<td>reasonForExport</td>
+<td>Cond</td>
+<td>String</td>
+<td>Must be used with commodities. Available values are &#39;commercial&#39;, &#39;gift&#39;, &#39;sample&#39;, &#39;return&#39;, &#39;repair&#39;, &#39;personal_effects&#39; and &#39;personal_use&#39; (Please use lowercase)</td>
+</tr>
+<tr>
 <td>commodities</td>
 <td>Y</td>
-<td>Object</td>
-<td>Describes a non-documents shipment. See <a href="#commodities">Commodities</a></td>
+<td>Array</td>
+<td>Describes a non-documents shipment. List of commodities. See <a href="#commodity">Commodity</a></td>
 </tr>
 </tbody></table>
 <h2 id='documents'>Documents</h2>
@@ -919,28 +989,6 @@ Max number of shipments allowed per request is 10
 <td>N</td>
 <td>Number</td>
 <td>Value of documents. If &#39;Documents With No Commercial Value&#39; was set as type field - value must be 0</td>
-</tr>
-</tbody></table>
-<h2 id='commodities'>Commodities</h2>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Optional</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>reasonForExport</td>
-<td>N</td>
-<td>String</td>
-<td>Available values are &#39;commercial&#39;, &#39;gift&#39;, &#39;sample&#39;, &#39;return&#39;, &#39;repair&#39;, &#39;personal_effects&#39; and &#39;personal_use&#39; (Please use lowercase)</td>
-</tr>
-<tr>
-<td>commodities</td>
-<td>N</td>
-<td>Array</td>
-<td>List of commodities. See <a href="#commodity">Commodity</a></td>
 </tr>
 </tbody></table>
 <h2 id='commodity'>Commodity</h2>
@@ -1029,7 +1077,7 @@ Max number of shipments allowed per request is 10
 <td>Registered account country code</td>
 </tr>
 </tbody></table>
-<h2 id='rate-results'>Rate Results</h2>
+<h2 id='rate-result'>Rate Result</h2>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1038,6 +1086,18 @@ Max number of shipments allowed per request is 10
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>status</td>
+<td>N</td>
+<td>Boolean</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>referenceNumber</td>
+<td>Y</td>
+<td>String</td>
+<td>Must be up to 30 chars</td>
+</tr>
 <tr>
 <td>rates</td>
 <td>N</td>
@@ -1055,16 +1115,22 @@ Max number of shipments allowed per request is 10
 </tr>
 </thead><tbody>
 <tr>
-<td>carrierServiceCode</td>
+<td>carrier</td>
 <td>N</td>
 <td>String</td>
-<td>The carrier serivce code</td>
+<td>Carrier name</td>
 </tr>
 <tr>
-<td>carrierServiceName</td>
+<td>serviceCode</td>
 <td>N</td>
 <td>String</td>
-<td>The carrier service name</td>
+<td>Serivce code</td>
+</tr>
+<tr>
+<td>serviceName</td>
+<td>N</td>
+<td>String</td>
+<td>Service name</td>
 </tr>
 <tr>
 <td>deliveryTime</td>
@@ -1089,6 +1155,12 @@ Max number of shipments allowed per request is 10
 <td>N</td>
 <td>Number</td>
 <td>The Billing weight rate is based on</td>
+</tr>
+<tr>
+<td>saturdayDelivery</td>
+<td>N</td>
+<td>Boolean</td>
+<td>Indicates if the rate is for a saturday delivery</td>
 </tr>
 </tbody></table>
 <h2 id='breakdown'>Breakdown</h2>
@@ -1191,6 +1263,18 @@ Max number of shipments allowed per request is 10
 </tr>
 </thead><tbody>
 <tr>
+<td>status</td>
+<td>N</td>
+<td>Boolean</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>referenceNumber</td>
+<td>Y</td>
+<td>String</td>
+<td>Must be up to 30 chars</td>
+</tr>
+<tr>
 <td>orderId</td>
 <td>N</td>
 <td>String</td>
@@ -1219,6 +1303,12 @@ Max number of shipments allowed per request is 10
 <td>N</td>
 <td>String</td>
 <td>Url to the generated label</td>
+</tr>
+<tr>
+<td>packingSlip</td>
+<td>Y</td>
+<td>String</td>
+<td>Url to the generated packing slip</td>
 </tr>
 <tr>
 <td>labelExpirationDate</td>
