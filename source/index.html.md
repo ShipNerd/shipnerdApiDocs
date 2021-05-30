@@ -398,7 +398,7 @@ shipments | N | Array | List of shipments. See [Shipment] (#shipment)
 Parameter | Optional | Type | Description
 --------- | -------- | ---- | -----------
 status | N | Boolean | Status of operation
-results | N | Array | Label Results. See [Label Result] (#label-result)
+results | N | Array | Label Results. See [Label Result] (#label-results)
 
 <aside class="notice">
 Max number of shipments allowed per request is 10 
